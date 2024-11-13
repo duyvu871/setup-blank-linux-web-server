@@ -29,7 +29,7 @@ timedatectl set-timezone $VPS_TIMEZONE
 apt update -y
 apt upgrade -y
 # apt autoremove -y # remove unused packages
-apt install -y apt-transport-https git wget curl gcc g++ gnupg-agent make ca-certificates software-properties-common
+apt install -y net-tools apt-transport-https git wget curl gcc g++ gnupg-agent make ca-certificates software-properties-common
 
 # firewall
 # default deny incoming
