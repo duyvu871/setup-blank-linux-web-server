@@ -9,7 +9,7 @@ echo "------------------------------------"
 sudo apt-get install -y redis-server
 
 # redis config
-rsync -av $src_dir/redis.conf "${redis_conf_path}/"
+rsync -av $src_dir/redis.conf "${redis_conf_path}"
 
 sudo service redis-server start
 redis-server -v
