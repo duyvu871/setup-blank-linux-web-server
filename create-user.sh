@@ -7,7 +7,7 @@ fi
 
 # fixed enviroment variables
 DEBIAN_FRONTEND=noninteractive
-SSH_USER=${SSH_USER:-"oanhnn"}
+SSH_USER=${SSH_USER:-"admin"}
 SSH_AUTHORIZED_KEYS=${SSH_AUTHORIZED_KEYS:-"https://github.com/${SSH_USER}.keys"}
 
 # add user
