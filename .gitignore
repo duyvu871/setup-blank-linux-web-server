@@ -1,4 +1,5 @@
 /nginx/logs/*.log
+/nginx/ssl/*/*.pem
 /nginx/ssl/*.pem
 /nginx/sites-enabled/*.conf
 !/nginx/sites-enabled/host1.lan.conf
