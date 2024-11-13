@@ -15,7 +15,7 @@ systemctl enable nginx
 systemctl start nginx
 
 # move nginx config
-mv ./nginx/sites-enabled/connectedbrain.com.vn.conf /etc/nginx/sites-enabled/connectedbrain.com.vn.conf
+mv ./nginx/sites-enabled /etc/nginx/sites-enabled
 mv ./nginx/nginx.conf /etc/nginx/nginx.conf
 mv ./nginx/logs /var/log/nginx
 mv ./nginx/ssl /etc/nginx/ssl

@@ -1,6 +1,7 @@
-/nginx/logs/*
-/nginx/ssl/*
+/nginx/logs/*.log
+/nginx/ssl/*.pem
 /nginx/sites-enabled/*.conf
+!/nginx/sites-enabled/host1.lan.conf
 /nginx/conf.d/*
 
-/haproxy/haproxy.cfg
+# /haproxy/haproxy.cfg
