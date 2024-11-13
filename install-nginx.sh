@@ -30,7 +30,7 @@ apt install -y nginx
 # The '-a' flag stands for archive mode.  It also handles the case where the destination directories don't exist.
 # The '-v' flag is for verbose output, showing what's being copied.
 
-rsync -av "$src_dir/sites-enabled/" "$dest_dir/"
+rsync -av "$src_dir/sites-enabled/" "$dest_dir/sites-enabled/"
 rsync -av "$src_dir/nginx.conf" "$dest_dir/"
 rsync -av "$src_dir/mime.types" "$dest_dir/"
 rsync -av "$src_dir/ssl/" "$dest_dir/"
