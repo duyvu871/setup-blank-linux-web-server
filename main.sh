@@ -40,4 +40,8 @@ ufw default allow outgoing
 ufw allow from $SSH_FROM_IP to any port 22 proto tcp
 ufw enable # enable firewall
 
+# allow http and https
+ufw allow 80/tcp
+ufw allow 443/tcp
+
 # forked from https://github.com/oanhnn/example-setup-vps-scripts
