@@ -32,6 +32,7 @@ apt install -y nginx
 
 rsync -av "$src_dir/sites-enabled/" "$dest_dir/"
 rsync -av "$src_dir/nginx.conf" "$dest_dir/"
+rsync -av "$src_dir/mime.types" "$dest_dir/"
 rsync -av "$src_dir/ssl/" "$dest_dir/"
 rsync -av "$src_dir/logs/" "$log_dir/"
 
