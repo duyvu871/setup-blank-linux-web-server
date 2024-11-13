@@ -1,0 +1,6 @@
+/nginx/logs/*
+/nginx/ssl/*
+/nginx/sites-enabled/*
+/nginx/conf.d/*
+
+/haproxy/haproxy.cfg

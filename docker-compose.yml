@@ -1,0 +1,61 @@
+version: "3.9"
+services:
+  nginx:
+    image: nginx:stable-alpine # Nginx alpine
+    ports:
+      - "80:80"
+      - "443:443" # HTTPS port
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/conf.d:/etc/nginx/conf.d:ro
+      - ./nginx/logs:/var/log/nginx
+      # - ./data/www:/var/www/html
+      - ./data/uploads:/var/www/uploads
+    depends_on:
+      - haproxy
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  haproxy:
+    image: haproxy:2.4-alpine # HAProxy alpine
+    ports:
+      - "8080:80"
+      - "1936:1936" # HAProxy stats
+    volumes:
+      - ./haproxy/haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro # HAProxy config
+      # - ./haproxy/certs:/etc/ssl/certs:ro # SSL certificates
+    restart: unless-stopped
+    networks:
+      - app-network
+
+  # Utility containers
+  nmap:
+    image: instrumentisto/nmap
+    networks:
+      - app-network
+    profiles: ["tools"] # Chỉ chạy khi cần
+
+  ghostscript:
+    image: alpine/ghostscript
+    volumes:
+      - ./data/documents:/documents
+    networks:
+      - app-network
+    profiles: ["tools"]
+
+  ffmpeg:
+    image: jrottenberg/ffmpeg:4.4-alpine
+    volumes:
+      - ./data/media:/media
+    networks:
+      - app-network
+    profiles: ["tools"]
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  uploads:
+  logs:
