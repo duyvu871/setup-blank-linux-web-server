@@ -4,5 +4,5 @@
 /nginx/sites-enabled/*.conf
 !/nginx/sites-enabled/host1.lan.conf
 /nginx/conf.d/*
-
+/postgresql/conf/*
 # /haproxy/haproxy.cfg
