@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  redis:
+    image: redis:6.2-alpine
+    container_name: my_redis
+    ports:
+      - "6379:6379"               # Mở cổng 6379 trên host và ánh xạ đến cổng 6379 trên container
+    volumes:
+      - redis_data:/data          # Volume để lưu dữ liệu Redis (rdb, aof, …)
+      - ./redis.conf:/usr/local/etc/redis/redis.conf:ro  # Mount file cấu hình Redis tùy chỉnh từ host vào container (chỉ đọc)
+    command: ["redis-server", "/usr/local/etc/redis/redis.conf"]  # Chạy redis-server với file cấu hình tùy chỉnh
+    environment:
+      - TZ=Asia/Ho_Chi_Minh        # Đặt múi giờ cho container
+    restart: always               # Luôn tự động khởi động lại container nếu gặp sự cố
+    healthcheck:                  # Kiểm tra tình trạng của Redis
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s               # Khoảng cách giữa các lần kiểm tra
+      timeout: 5s                 # Thời gian chờ tối đa cho mỗi lần kiểm tra
+      retries: 3                  # Số lần thử lại trước khi đánh dấu container không khỏe
+
+volumes:
+  redis_data:                     # Volume dùng để lưu trữ dữ liệu của Redis
