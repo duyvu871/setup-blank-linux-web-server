@@ -1,0 +1,68 @@
+syntax = "proto3";
+
+package order;
+
+service OrderService {
+  rpc CreateOrder(CreateOrderRequest) returns (Order);
+  rpc GetOrderById(GetOrderByIdRequest) returns (Order);
+  rpc GetOrdersByUserId(GetOrdersByUserIdRequest) returns (GetOrdersByUserIdResponse);
+  rpc UpdateOrderStatus(UpdateOrderStatusRequest) returns (Order);
+  rpc CancelOrder(CancelOrderRequest) returns (Order);
+}
+
+message CreateOrderRequest {
+  int32 userId = 1;
+  repeated OrderItemInput items = 2;
+}
+
+message OrderItemInput {
+  int32 foodId = 1;
+  int32 quantity = 2;
+  float price = 3;
+}
+
+message GetOrderByIdRequest {
+  int32 id = 1;
+}
+
+message GetOrdersByUserIdRequest {
+  int32 userId = 1;
+}
+
+message GetOrdersByUserIdResponse {
+  repeated Order orders = 1;
+}
+
+message UpdateOrderStatusRequest {
+  int32 id = 1;
+  OrderStatus status = 2;
+}
+
+message CancelOrderRequest {
+  int32 id = 1;
+}
+
+message Order {
+  int32 id = 1;
+  int32 userId = 2;
+  OrderStatus status = 3;
+  float total = 4;
+  repeated OrderItem items = 5;
+  string createdAt = 6;
+  string updatedAt = 7;
+}
+
+message OrderItem {
+  int32 id = 1;
+  int32 orderId = 2;
+  int32 foodId = 3;
+  int32 quantity = 4;
+  float price = 5;
+}
+
+enum OrderStatus {
+  PENDING = 0;
+  PROCESSING = 1;
+  COMPLETED = 2;
+  CANCELLED = 3;
+}

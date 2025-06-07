@@ -5,4 +5,8 @@
 !/nginx/sites-enabled/host1.lan.conf
 /nginx/conf.d/*
 /postgresql/conf/*
+node_modules/
+*.log
+*.log.*
+*.log.*.*
 # /haproxy/haproxy.cfg

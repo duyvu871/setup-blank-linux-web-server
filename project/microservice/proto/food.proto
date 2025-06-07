@@ -1,0 +1,28 @@
+syntax = "proto3";
+
+package food;
+
+service FoodService {
+  rpc GetFoodById(GetFoodByIdRequest) returns (Food);
+  rpc GetFoodsByIds(GetFoodsByIdsRequest) returns (GetFoodsByIdsResponse);
+}
+
+message GetFoodByIdRequest {
+  int32 id = 1;
+}
+
+message GetFoodsByIdsRequest {
+  repeated int32 ids = 1;
+}
+
+message GetFoodsByIdsResponse {
+  repeated Food foods = 1;
+}
+
+message Food {
+  int32 id = 1;
+  string name = 2;
+  float price = 3;
+  string category = 4;
+  bool available = 5;
+}

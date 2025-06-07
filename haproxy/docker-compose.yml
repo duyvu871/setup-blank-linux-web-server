@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  haproxy:
+    image: haproxy:2.4-alpine
+    container_name: haproxy-service
+    ports:
+      - "80:80"      # HTTP port
+      - "8080:8080"  # Stats page
+    volumes:
+      - ./haproxy.cfg:/usr/local/etc/haproxy/haproxy.cfg:ro  # Mount config file as read-only
+      - ./errors:/etc/haproxy/errors:ro                      # Mount custom error pages (optional)
+    restart: unless-stopped
+    networks:
+      - haproxy-network
+    # Healthcheck to verify HAProxy is running properly
+    healthcheck:
+      test: ["CMD", "haproxy", "-c", "-f", "/usr/local/etc/haproxy/haproxy.cfg"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+
+networks:
+  haproxy-network:
+    driver: bridge

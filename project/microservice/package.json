@@ -1,0 +1,22 @@
+{
+  "name": "food-ordering-microservice",
+  "version": "1.0.0",
+  "description": "Food Ordering System using Microservice Architecture",
+  "scripts": {
+    "test": "ts-node test-client.ts",
+    "start:food": "cd food-service && npm run dev",
+    "start:order": "cd order-service && npm run dev",
+    "docker:build": "docker-compose build",
+    "docker:up": "docker-compose up",
+    "docker:down": "docker-compose down"
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.8.0",
+    "@grpc/proto-loader": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/node": "^18.11.18",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.9.4"
+  }
+}
